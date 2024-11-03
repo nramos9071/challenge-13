@@ -4,7 +4,7 @@ const sequelize = require('../config/connection.js');
 
 class Tag extends Model {}
 
-Tag.init( 'Tag',
+Tag.init(
   {
     // define columns
     tag_name: {
@@ -16,7 +16,8 @@ Tag.init( 'Tag',
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'tag',
+    modelName: 'Tag',
+    tableName: 'tag',
   }
 );
 

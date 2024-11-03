@@ -4,7 +4,7 @@ const sequelize = require('../config/connection.js');
 
 class Category extends Model {}
 
-Category.init( 'Category', {
+Category.init({
     // define columns
     category_name:{
       type: DataTypes.STRING,
@@ -16,7 +16,8 @@ Category.init( 'Category', {
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'category',
+    modelName: 'Category',
+    tableNamme: 'category',
   }
 );
 

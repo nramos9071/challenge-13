@@ -7,7 +7,7 @@ const sequelize = require('../config/connection');
 class Product extends Model {}
 
 // set up fields and rules for Product model
-Product.init( 'Product', {
+Product.init({
   product_name:{
     // define columns
     type: DataTypes.STRING,
@@ -33,7 +33,8 @@ Product.init( 'Product', {
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'Product',
+    tableName: 'product',
   }
 );
 
