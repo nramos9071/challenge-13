@@ -35,13 +35,11 @@ CREATE TABLE product_tag (
   FOREIGN KEY (tag_id) REFERENCES tag(id) ON DELETE CASCADE
 );
 
+-- Ensure the foreign key constraint is set to cascade delete
 DO $$
 BEGIN
     IF EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'product_category_id_fkey') THEN
         ALTER TABLE product DROP CONSTRAINT product_category_id_fkey;
-    END IF;
-    IF EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'products_category_id_fkey') THEN
-        ALTER TABLE product DROP CONSTRAINT products_category_id_fkey;
     END IF;
     ALTER TABLE product ADD CONSTRAINT product_category_id_fkey FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE;
 END $$;
@@ -61,3 +59,5 @@ FROM
 WHERE
     c.conrelid = 'product'::regclass
     AND c.confrelid = 'category'::regclass;
+
+    SELECT * FROM product WHERE category_id NOT IN (SELECT id FROM category);
